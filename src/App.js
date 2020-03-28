@@ -8,7 +8,8 @@ class App extends Component {
 
     this.state = {
       characters: [],
-      pokemon: []
+      pokemon: [],
+      buttonClicked: false
     };
   }
   apiCall = () => {
@@ -21,28 +22,16 @@ class App extends Component {
     }
   };
 
-  gamesCall = () => {
-    try {
-      axios.get("/characters").then(response => {
-        let results = response.data.map(char => {
-          return char.name;
-        });
-        this.setState({
-          characters: results
-        });
-        console.log(this.state.characters);
-      });
-    } catch (error) {
-      alert(`Here's the error: ${error}`);
-    }
-  };
-
   pokeCall = async () => {
     try {
+      this.setState({
+        buttonClicked: true
+      });
       await axios.get("/pokemon").then(response => {
         this.setState({
           pokemon: response.data
         });
+
         console.log(this.state.pokemon);
       });
     } catch (error) {
@@ -52,37 +41,44 @@ class App extends Component {
 
   render() {
     return (
-      <div className="first_screen">
-        WHAT'S UP
-        <div className="first_button_box">
-          <button
-            className="button"
-            onClick={() => {
-              this.apiCall();
-            }}
-          >
-            Click Me for a Special Message!
-          </button>
-          <button
-            className="button"
-            onClick={() => {
-              this.gamesCall();
-            }}
-          >
-            Click For Characters!!
-          </button>
-          <button
-            className="button"
-            onClick={() => {
-              this.pokeCall();
-            }}
-          >
-            Click For Pokemon!!
-          </button>
+      <div className="flex-container">
+        <div className="top-container">
+          <div className="flexbox-item-top">
+            <h2>Please click one of the buttons below to see what happens!</h2>
+            <div>
+              <button
+                className="button"
+                onClick={() => {
+                  this.apiCall();
+                }}
+              >
+                Click Me for a Special Message!
+              </button>
+              <button
+                className="button"
+                onClick={() => {
+                  this.pokeCall();
+                }}
+              >
+                Click For Pokemon!!
+              </button>
+            </div>
+          </div>
         </div>
-        {this.state.pokemon.map((poke, index) => {
-          return <li key = { index }>{poke}</li>
-        })}
+        <div className="bottom-container">
+          {this.state.pokemon.length === 0 &&
+          this.state.buttonClicked === true ? (
+            <h3>Loading...</h3>
+          ) : (
+            this.state.pokemon.map((poke, index) => {
+              return (
+                <div className="flexbox-item-bottom" key={index}>
+                  {poke}
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
     );
   }

@@ -8,11 +8,10 @@ const app = express();
 const massive = require("massive");
 const path = require("path");
 const bodyParser = require("body-parser");
-const games = require("./gamesAPI/games");
 const poke = require("./pokeAPI/pokemon");
 const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
-const BASE_LIMIT = 50;
-const BASE_OFFSET = 0;
+const BASE_POKE_LIMIT = 50;
+const BASE_POKE_OFFSET = 0;
 
 
 
@@ -44,7 +43,7 @@ app.get("/characters", (req, res) => {
 
 app.get("/pokemon", (req, res) => {
   poke
-    .getAllData(BASE_POKE_URL, BASE_LIMIT, BASE_OFFSET)
+    .getAllData(BASE_POKE_URL, BASE_POKE_LIMIT, BASE_POKE_OFFSET)
     .then(result => {
       console.log(result);
       res.status(200).send(result);

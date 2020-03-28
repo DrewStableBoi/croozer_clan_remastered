@@ -1,46 +1,55 @@
-.first_screen {
+.flex-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  border: 3px solid black;
+  background-color: grey;
   height: 100vh;
   width: 100vw;
-  background-color: #8d95c9;
-  justify-content: space-evenly;
 }
 
-.first_button_box {
+.top-container {
   display: flex;
-  align-self: center;
-  height: 50%;
-  width: 50%; 
-  background-color: grey;
-  border: 5px solid black;
+  align-self: flex-start;
+  height: 25vh;
+  width: 100vw;
+  border: 3px solid red;
+}
+.bottom-container {
+  display: flex;
+  align-self: flex-end;
+  flex-flow: row wrap;
+  overflow-y: auto;
+  justify-content: space-evenly;
+  height: 75vh;
+  width: 100vw;
+  border: 3px solid green;
+}
+.flexbox-item-top {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  border: 2px solid blue;
+  background-color: #dfdfdf;
+}
+.flexbox-item-bottom {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 2px solid blue;
+  background-color: #dfdfdf;
+}
+.flexbox-item-1 {
+  min-height: 100px;
+}
+.flexbox-item-2 {
+  min-height: 200px;
+}
+.flexbox-item-3 {
+  min-height: 300px;
 }
 
 #button {
-  align-self: center;
-  height: 10%;
-  width: 10%;
-}
-
-.login_box {
-  display: flex;
-  position: fixed;
-  z-index: 9999;
-  filter: none;
-  align-self: center;
-  margin-top: 20vh;
-  flex-wrap: wrap;
-  flex-direction: column;
-  font-size: 50px;
-  align-items: center;
-  text-align: center;
-  justify-content: space-evenly;
-  height: 60%;
-  padding: 20px;
-  margin-bottom: 20vh;
-  width: 400px;
-  box-shadow: 7px 7px 13px rgba(128, 128, 128, 0.301);
-  border: 4px solid grey;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.8);
+height: 25px;
 }
