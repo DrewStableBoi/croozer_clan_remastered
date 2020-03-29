@@ -9,9 +9,15 @@ class App extends Component {
     this.state = {
       characters: [],
       pokemon: [],
-      buttonClicked: false
+      buttonClicked: false,
+      selectedPoke: ''
     };
   }
+
+  componentDidMount = () => {
+    this.getAll();
+  }
+
   apiCall = () => {
     try {
       axios.get("/hello").then(response => {
@@ -22,7 +28,7 @@ class App extends Component {
     }
   };
 
-  pokeCall = async () => {
+  getAll = async () => {
     try {
       this.setState({
         buttonClicked: true
@@ -31,7 +37,6 @@ class App extends Component {
         this.setState({
           pokemon: response.data
         });
-
         console.log(this.state.pokemon);
       });
     } catch (error) {
@@ -39,12 +44,18 @@ class App extends Component {
     }
   };
 
+  setPoke = (event) => {
+    this.setState({
+      selectedPoke: event.target.value
+    })
+  }
+
   render() {
     return (
       <div className="flex-container">
         <div className="top-container">
           <div className="flexbox-item-top">
-            <h2>Please click one of the buttons below to see what happens!</h2>
+            <h2>Welcome to CHA BOI'S POKEDEX!</h2>
             <div>
               <button
                 className="button"
@@ -52,32 +63,27 @@ class App extends Component {
                   this.apiCall();
                 }}
               >
-                Click Me for a Special Message!
+                Click Me for instructions!
               </button>
-              <button
-                className="button"
-                onClick={() => {
-                  this.pokeCall();
-                }}
-              >
-                Click For Pokemon!!
-              </button>
+              <label for="Pokemon">Choose a Pokemon:</label>
+              <select id="Pokemon" onChange={this.setPoke}>
+                {this.state.pokemon.length === 0 &&
+                this.state.buttonClicked === true ? (
+                  <option value="" selected>Select a Pokemon!</option>
+                ) : (
+                  this.state.pokemon.map((poke, index) => {
+                    return (
+                      <option key={index} value={poke} selected>
+                        {poke}
+                      </option>
+                    );
+                  })
+                )}
+              </select>
             </div>
           </div>
         </div>
         <div className="bottom-container">
-          {this.state.pokemon.length === 0 &&
-          this.state.buttonClicked === true ? (
-            <h3>Loading...</h3>
-          ) : (
-            this.state.pokemon.map((poke, index) => {
-              return (
-                <div className="flexbox-item-bottom" key={index}>
-                  {poke}
-                </div>
-              );
-            })
-          )}
         </div>
       </div>
     );
