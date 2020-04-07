@@ -44,7 +44,7 @@ class App extends Component {
     }
   };
 
-  getPoke = (poke) => {
+  iChooseYou = (poke) => {
     try {
       axios.get(`/poke`, {
         params: {
@@ -110,7 +110,7 @@ class App extends Component {
           <button
             className="button"
             onClick={() => {
-              this.getPoke(this.state.selectedPoke);
+              this.iChooseYou(this.state.selectedPoke);
             }}
           >
             Fetch Info

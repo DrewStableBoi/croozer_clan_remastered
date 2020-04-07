@@ -49,7 +49,6 @@ module.exports = {
         method: "GET",
       };
     };
-    console.log(pokeOptions(BASE_POKE_URL, poke));
     return axios(pokeOptions(BASE_POKE_URL, poke)).then((response) => {
       return response.data;
     });
