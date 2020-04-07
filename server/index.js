@@ -4,7 +4,7 @@ const app = express();
 const massive = require("massive");
 const path = require("path");
 const bodyParser = require("body-parser");
-const poke = require("./pokeAPI/pokemon");
+const pokemonMethods = require("./pokeAPI/pokemon");
 const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
 const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
@@ -35,7 +35,7 @@ app.get("/characters", (req, res) => {
 });
 
 app.get("/pokemon", (req, res) => {
-  poke
+  pokemonMethods
     .populateDropdown(BASE_POKE_URL, BASE_POKE_LIMIT, BASE_POKE_OFFSET)
     .then(result => {
       console.log(result);
@@ -46,8 +46,16 @@ app.get("/pokemon", (req, res) => {
     });
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build/index.html"));
+app.get("/poke", (req, res) => {
+  console.log(req.query); // WHY DOESN'T THIS WORK?!!
+  let poke  = req.query.pokemon;
+  console.log(poke);
+  pokemonMethods.getPoke(poke).then(result => {
+    res.status(200).send(result);
+  })
+  .catch(error => {
+    console.log(error);
+  });
 });
 
 app.listen(8080, function() {

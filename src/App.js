@@ -10,17 +10,17 @@ class App extends Component {
       characters: [],
       pokemon: [],
       buttonClicked: false,
-      selectedPoke: ''
+      selectedPoke: "",
     };
   }
 
   componentDidMount = () => {
     this.getAll();
-  }
+  };
 
   apiCall = () => {
     try {
-      axios.get("/hello").then(response => {
+      axios.get("/hello").then((response) => {
         alert(response.data);
       });
     } catch (error) {
@@ -31,11 +31,11 @@ class App extends Component {
   getAll = async () => {
     try {
       this.setState({
-        buttonClicked: true
+        buttonClicked: true,
       });
-      await axios.get("/pokemon").then(response => {
+      await axios.get("/pokemon").then((response) => {
         this.setState({
-          pokemon: response.data
+          pokemon: response.data,
         });
         console.log(this.state.pokemon);
       });
@@ -44,46 +44,77 @@ class App extends Component {
     }
   };
 
+  getPoke = (poke) => {
+    try {
+      axios.get(`/poke`, {
+        params: {
+          pokemon: poke.toLowerCase()
+        }
+      }).then((response) => {
+        alert(response.data);
+      });
+    } catch (error) {
+      alert(`Here's the error: ${error}`);
+    }
+  };
+
   setPoke = (event) => {
     this.setState({
-      selectedPoke: event.target.value
-    })
-  }
+      selectedPoke: event.target.value,
+    });
+  };
 
   render() {
     return (
-      <div className="flex-container">
-        <div className="top-container">
-          <div className="flexbox-item-top">
-            <h2>Welcome to CHA BOI'S POKEDEX!</h2>
-            <div>
-              <button
-                className="button"
-                onClick={() => {
-                  this.apiCall();
-                }}
-              >
-                Click Me for instructions!
-              </button>
-              <label for="Pokemon">Choose a Pokemon:</label>
-              <select id="Pokemon" onChange={this.setPoke}>
-                {this.state.pokemon.length === 0 &&
-                this.state.buttonClicked === true ? (
-                  <option value="" selected>Select a Pokemon!</option>
-                ) : (
-                  this.state.pokemon.map((poke, index) => {
-                    return (
-                      <option key={index} value={poke} selected>
-                        {poke}
-                      </option>
-                    );
-                  })
-                )}
-              </select>
-            </div>
-          </div>
+      <div>
+        <div>
+          <button
+            onClick={() => {
+              this.apiCall();
+            }}
+          >
+            Click Me for Instructions!
+          </button>
         </div>
-        <div className="bottom-container">
+        <div>
+          <select
+            id="Pokemon"
+            onChange={this.setPoke}
+            style={{
+              height: "30px",
+              padding: "10px",
+              borderRadius: "2px",
+            }}
+          >
+            <option value="" selected>
+              Select a Pokemon!
+            </option>
+            {this.state.pokemon.length === 0 &&
+            this.state.buttonClicked === true ? (
+              <option value="" selected>
+                Select a Pokemon!
+              </option>
+            ) : (
+              this.state.pokemon.map((poke, index) => {
+                return (
+                  <option key={index} value={poke}>
+                    {poke}
+                  </option>
+                );
+              })
+            )}
+          </select>
+        </div>
+
+        <div>
+          <button
+            className="button"
+            onClick={() => {
+              this.getPoke(this.state.selectedPoke);
+            }}
+          >
+            Fetch Info
+          </button>
         </div>
       </div>
     );

@@ -3,8 +3,8 @@ const _ = require("lodash");
 const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
 const BASE_POKE_LIMIT = 50;
 
-String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1)
+String.prototype.capitalize = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 module.exports = {
@@ -14,16 +14,16 @@ module.exports = {
       method: "GET",
       params: {
         offset: offset,
-        limit: limit
-      }
+        limit: limit,
+      },
     };
   },
 
   populateDropdown(endpoint, limit, offset, allData = []) {
     let options = this.buildRequestOptions(endpoint, limit, offset);
     return axios(options)
-      .then(response => {
-        let flatten = response.data.results.map(pokemon => {
+      .then((response) => {
+        let flatten = response.data.results.map((pokemon) => {
           return pokemon.name.capitalize();
         });
         allData = _.concat(allData, flatten);
@@ -37,12 +37,21 @@ module.exports = {
         }
         return allData;
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   },
 
-  getOneData(endpoint, req, res) {
-    let options
-  }
+  getPoke(poke) {
+    let pokeOptions = (endpoint, selected) => {
+      return {
+        url: `${endpoint}/${selected}`,
+        method: "GET",
+      };
+    };
+    console.log(pokeOptions(BASE_POKE_URL, poke));
+    return axios(pokeOptions(BASE_POKE_URL, poke)).then((response) => {
+      return response.data;
+    });
+  },
 };
