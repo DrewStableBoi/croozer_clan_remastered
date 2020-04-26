@@ -47,7 +47,6 @@ app.get("/pokemon", (req, res) => {
 });
 
 app.get("/poke", (req, res) => {
-  console.log(req.query); // WHY DOESN'T THIS WORK?!!
   let poke  = req.query.pokemon;
   console.log(poke);
   pokemonMethods.getPoke(poke).then(result => {

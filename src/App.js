@@ -11,6 +11,7 @@ class App extends Component {
       pokemon: [],
       buttonClicked: false,
       selectedPoke: "",
+      theOne: []
     };
   }
 
@@ -51,7 +52,9 @@ class App extends Component {
           pokemon: poke.toLowerCase()
         }
       }).then((response) => {
-        alert(response.data);
+        this.setState({
+          theOne: response.data
+        })
       });
     } catch (error) {
       alert(`Here's the error: ${error}`);
@@ -105,7 +108,6 @@ class App extends Component {
             )}
           </select>
         </div>
-
         <div>
           <button
             className="button"
