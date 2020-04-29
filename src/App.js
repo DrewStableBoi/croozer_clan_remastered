@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../src/stylings/app.css";
 import axios from "axios";
+import PokeBox from "./components/homepage/pokemon_info";
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class App extends Component {
       pokemon: [],
       buttonClicked: false,
       selectedPoke: "",
-      theOne: []
+      theOne: [],
     };
   }
 
@@ -38,7 +39,6 @@ class App extends Component {
         this.setState({
           pokemon: response.data,
         });
-        console.log(this.state.pokemon);
       });
     } catch (error) {
       alert(`Here's the error: ${error}`);
@@ -47,15 +47,17 @@ class App extends Component {
 
   iChooseYou = (poke) => {
     try {
-      axios.get(`/poke`, {
-        params: {
-          pokemon: poke.toLowerCase()
-        }
-      }).then((response) => {
-        this.setState({
-          theOne: response.data
+      axios
+        .get(`/poke`, {
+          params: {
+            pokemon: poke.toLowerCase(),
+          },
         })
-      });
+        .then((response) => {
+          this.setState({
+            theOne: response.data,
+          });
+        });
     } catch (error) {
       alert(`Here's the error: ${error}`);
     }
@@ -118,6 +120,7 @@ class App extends Component {
             Fetch Info
           </button>
         </div>
+        <PokeBox />
       </div>
     );
   }

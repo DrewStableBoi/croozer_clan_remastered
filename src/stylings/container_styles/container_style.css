@@ -1,0 +1,13 @@
+.wrapper-box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  border: 3px solid black;
+  background-color: grey;
+  height: 10vh;
+  width: 10vw;
+}
+
+.top-half-box {
+}
