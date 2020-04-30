@@ -5,8 +5,8 @@ const PokeBox = (props) => {
     return(
     <div className="wrapper-box">
         <div className="top-half-box">
-            <div className="top-half-box">
-                BASTIAN, PLEASE
+            <div className="bottom-half-box">
+                {props.pokemon.name}
             </div>
         </div>
     </div>

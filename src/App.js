@@ -120,7 +120,7 @@ class App extends Component {
             Fetch Info
           </button>
         </div>
-        <PokeBox />
+        <PokeBox pokemon={this.state.theOne}/>
       </div>
     );
   }
