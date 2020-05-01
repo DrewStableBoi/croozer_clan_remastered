@@ -32,9 +32,6 @@ class App extends Component {
 
   getAll = async () => {
     try {
-      this.setState({
-        buttonClicked: true,
-      });
       await axios.get("/pokemon").then((response) => {
         this.setState({
           pokemon: response.data,
@@ -47,6 +44,9 @@ class App extends Component {
 
   iChooseYou = (poke) => {
     try {
+      this.setState({
+        buttonClicked: true,
+      });
       axios
         .get(`/poke`, {
           params: {
@@ -120,7 +120,10 @@ class App extends Component {
             Fetch Info
           </button>
         </div>
-        <PokeBox pokemon={this.state.theOne}/>
+        <PokeBox
+          pokemon={this.state.theOne}
+          buttonClicked={this.state.buttonClicked}
+        />
       </div>
     );
   }
