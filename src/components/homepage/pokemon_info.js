@@ -10,6 +10,9 @@ const PokeBox = (props) => {
       </div>
     );
   }
+  if (props.pokemon.length === 0) {
+    return <div className="wrapper-box">Your Pokemon's Information will be Displayed Here</div>;
+  }
   return (
     <div className="wrapper-box">
       <div className="top-half-box">
