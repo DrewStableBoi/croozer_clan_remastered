@@ -24,8 +24,8 @@ const PokeBox = (props) => {
       </div>
       <div className="bottom-half-box">
         <h2>Order #{order}</h2>
-        <h2>Height: {height} fart nuggets </h2>
-        <h2>Weight: {weight} ass chunks </h2>
+        <h2>Height: {height}  </h2>
+        <h2>Weight: {weight}  </h2>
         <h2>PokeId: {id}</h2>
         <h2>Starting EXP: {base_experience}</h2>
       </div>
