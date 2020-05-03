@@ -1,51 +1,26 @@
-.flex-container {
+.main-container {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
-  border: 3px solid black;
-  background-color: grey;
   height: 100vh;
   width: 100vw;
 }
 
-.top-container {
+.buttons_and_instructions {
   display: flex;
-  align-self: flex-start;
-  flex-flow: column wrap;
-  height: 25vh;
-  width: 100vw;
-}
-.bottom-container {
-  display: flex;
-  align-self: flex-end;
-  flex-flow: row wrap;
-  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
-  height: 75vh;
-  width: 100vw;
+  height: 50vh;
+  width: 25vw;
+  
 }
-.flexbox-item-top {
+
+.just_buttons {
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #dfdfdf;
-}
-.flexbox-item-bottom {
-  width: 100px;
-  height: 100px;
-  margin: 10px;
-  background-color: #dfdfdf;
-}
-.flexbox-item-1 {
-  min-height: 100px;
-}
-.flexbox-item-2 {
-  min-height: 200px;
-}
-.flexbox-item-3 {
-  min-height: 300px;
-}
+  justify-content: space-evenly;
+  width: 75%;
+} /* This class is just for the Fetch Info and Erase Info buttons */
 
 #button {
 height: 30px;

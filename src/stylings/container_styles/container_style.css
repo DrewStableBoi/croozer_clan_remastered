@@ -1,9 +1,10 @@
 .wrapper-box {
   display: flex;
   flex-flow: row wrap;
+  padding: 10px;
   justify-content: space-between;
-  border: 2px solid black;
   background-color: grey;
+  border: 1.5px solid black;
   height: 500px;
   width: 300px;
 }
@@ -11,13 +12,11 @@
 .top-half-box {
   height: 10%;
   width: 400px;
-  border: 2px solid black;
 }
 
 .bottom-half-box {
   height: 88%;
   width: 400px;
-  border: 2px solid black;
 }
 
 .no-poke-yet {

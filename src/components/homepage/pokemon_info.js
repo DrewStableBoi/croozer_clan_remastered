@@ -11,7 +11,11 @@ const PokeBox = (props) => {
     );
   }
   if (props.pokemon.length === 0) {
-    return <div className="wrapper-box">Your Pokemon's Information will be Displayed Here</div>;
+    return (
+      <div styles={{ display: "flex", alignSelf: "center" }}>
+        Your Pokemon's Information will be Displayed Here
+      </div>
+    );
   }
   return (
     <div className="wrapper-box">
@@ -24,9 +28,9 @@ const PokeBox = (props) => {
       </div>
       <div className="bottom-half-box">
         <h2>Order #{order}</h2>
-        <h2>Height: {height} </h2>
-        <h2>Weight: {weight} </h2>
-        <h2>PokeId: {id}</h2>
+        <h2>Height: {height} Decimetres </h2>
+        <h2>Weight: {weight} Hectograms </h2>
+        <h2>ID: {id} </h2>
         <h2>Starting EXP: {base_experience}</h2>
       </div>
     </div>

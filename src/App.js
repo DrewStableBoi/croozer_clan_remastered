@@ -63,6 +63,16 @@ class App extends Component {
     }
   };
 
+  eraseInfo = () => {
+    this.setState({
+        characters: [],
+        pokemon: [],
+        buttonClicked: false,
+        selectedPoke: "",
+        theOne: []
+    })
+  };
+
   setPoke = (event) => {
     this.setState({
       selectedPoke: event.target.value,
@@ -71,54 +81,65 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <button
-            onClick={() => {
-              this.apiCall();
-            }}
-          >
-            Click Me for Instructions!
-          </button>
-        </div>
-        <div>
-          <select
-            id="Pokemon"
-            onChange={this.setPoke}
-            style={{
-              height: "30px",
-              padding: "10px",
-              borderRadius: "2px",
-            }}
-          >
-            <option value="" selected>
-              Select a Pokemon!
-            </option>
-            {this.state.pokemon.length === 0 &&
-            this.state.buttonClicked === true ? (
+      <div className="main-container">
+        <div className="buttons_and_instructions">
+          <div>
+            <button
+              className="button"
+              onClick={() => {
+                this.apiCall();
+              }}
+            >
+              Click Me for Instructions!
+            </button>
+          </div>
+          <div>
+            <select
+              id="Pokemon"
+              onChange={this.setPoke}
+              style={{
+                height: "30px",
+                padding: "10px",
+                borderRadius: "2px",
+              }}
+            >
               <option value="" selected>
                 Select a Pokemon!
               </option>
-            ) : (
-              this.state.pokemon.map((poke, index) => {
-                return (
-                  <option key={index} value={poke}>
-                    {poke}
-                  </option>
-                );
-              })
-            )}
-          </select>
-        </div>
-        <div>
-          <button
-            className="button"
-            onClick={() => {
-              this.iChooseYou(this.state.selectedPoke);
-            }}
-          >
-            Fetch Info
-          </button>
+              {this.state.pokemon.length === 0 &&
+              this.state.buttonClicked === true ? (
+                <option value="" selected>
+                  Select a Pokemon!
+                </option>
+              ) : (
+                this.state.pokemon.map((poke, index) => {
+                  return (
+                    <option key={index} value={poke}>
+                      {poke}
+                    </option>
+                  );
+                })
+              )}
+            </select>
+          </div>
+          <div className="just_buttons">
+            <button
+              className="button"
+              onClick={() => {
+                this.iChooseYou(this.state.selectedPoke);
+              }}
+            >
+              Fetch Info
+            </button>
+            <button
+              className="button"
+              onClick={() => {
+                this.eraseInfo();
+              }}
+            >
+              Erase Info
+            </button>
+          </div>
         </div>
         <PokeBox
           pokemon={this.state.theOne}
