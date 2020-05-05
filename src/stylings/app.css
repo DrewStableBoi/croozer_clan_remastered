@@ -1,10 +1,17 @@
 .main-container {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
   height: 100vh;
   width: 100vw;
-}
+} 
+
+/* On May 3, 2020, you had an idea to build an app that would allow for data collection surrounding mental health episodes
+the goal would be to enable husbands, wives, friends and partners as well as parents, etc. to better prepare for a response to an episode
+of depression or suicidal thoughts, etc. They just fill out a survey asking how they responded in the past to situations and an algorithm spits
+out a formula based on what has worked in the past. The survey will also take into consideration the feelings and health of the person dealing with the 
+person in crisis. */
 
 .buttons_and_instructions {
   display: flex;
@@ -13,7 +20,6 @@
   justify-content: space-evenly;
   height: 50vh;
   width: 25vw;
-  
 }
 
 .just_buttons {

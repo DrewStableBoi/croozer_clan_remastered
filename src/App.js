@@ -8,7 +8,6 @@ class App extends Component {
     super();
 
     this.state = {
-      characters: [],
       pokemon: [],
       buttonClicked: false,
       selectedPoke: "",
@@ -65,8 +64,6 @@ class App extends Component {
 
   eraseInfo = () => {
     this.setState({
-        characters: [],
-        pokemon: [],
         buttonClicked: false,
         selectedPoke: "",
         theOne: []

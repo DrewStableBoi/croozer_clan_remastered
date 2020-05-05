@@ -2,7 +2,7 @@ import React from "react";
 import "../../stylings/container_styles/container_style.css";
 
 const PokeBox = (props) => {
-  const { name, order, height, weight, id, base_experience } = props.pokemon;
+  const { name, order, height, weight, id, base_experience, sprites } = props.pokemon;
   if (props.pokemon.length === 0 && props.buttonClicked === true) {
     return (
       <div className="wrapper-box">
@@ -32,6 +32,7 @@ const PokeBox = (props) => {
         <h2>Weight: {weight} Hectograms </h2>
         <h2>ID: {id} </h2>
         <h2>Starting EXP: {base_experience}</h2>
+        <img src={sprites.front_shiny} alt="Pokemon Selected"></img>
       </div>
     </div>
   );
