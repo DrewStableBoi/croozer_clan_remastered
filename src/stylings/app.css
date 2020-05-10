@@ -13,6 +13,10 @@ of depression or suicidal thoughts, etc. They just fill out a survey asking how 
 out a formula based on what has worked in the past. The survey will also take into consideration the feelings and health of the person dealing with the 
 person in crisis. */
 
+.pokemon_container {
+  display: flex;
+}
+
 .buttons_and_instructions {
   display: flex;
   flex-direction: column;

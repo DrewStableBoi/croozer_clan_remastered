@@ -79,6 +79,7 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
+        <div className="pokemon">
         <div className="buttons_and_instructions">
           <div>
             <button
@@ -142,6 +143,7 @@ class App extends Component {
           pokemon={this.state.theOne}
           buttonClicked={this.state.buttonClicked}
         />
+        </div>
       </div>
     );
   }
