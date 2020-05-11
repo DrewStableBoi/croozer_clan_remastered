@@ -1,7 +1,7 @@
 import React from "react";
 import "../../stylings/container_styles/container_style.css";
 
-const PokeBox = (props) => {
+const ZipExport = (props) => {
   const { name, order, height, weight, id, base_experience, sprites } = props.pokemon;
   if (props.pokemon.length === 0 && props.buttonClicked === true) {
     return (
@@ -38,4 +38,4 @@ const PokeBox = (props) => {
   );
 };
 
-export default PokeBox;
+export default ZipExport;

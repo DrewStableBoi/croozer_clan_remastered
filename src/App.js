@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../src/stylings/app.css";
 import axios from "axios";
 import PokeBox from "./components/homepage/pokemon_info";
-
+import ZipExport from "./components/homepage/zip_export";
 class App extends Component {
   constructor() {
     super();
@@ -64,10 +64,10 @@ class App extends Component {
 
   eraseInfo = () => {
     this.setState({
-        buttonClicked: false,
-        selectedPoke: "",
-        theOne: []
-    })
+      buttonClicked: false,
+      selectedPoke: "",
+      theOne: [],
+    });
   };
 
   setPoke = (event) => {
@@ -79,70 +79,76 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
-        <div className="pokemon">
-        <div className="buttons_and_instructions">
-          <div>
-            <button
-              className="button"
-              onClick={() => {
-                this.apiCall();
-              }}
-            >
-              Click Me for Instructions!
-            </button>
-          </div>
-          <div>
-            <select
-              id="Pokemon"
-              onChange={this.setPoke}
-              style={{
-                height: "30px",
-                padding: "10px",
-                borderRadius: "2px",
-              }}
-            >
-              <option value="" selected>
-                Select a Pokemon!
-              </option>
-              {this.state.pokemon.length === 0 &&
-              this.state.buttonClicked === true ? (
+        <div className="pokemon_container">
+          <div className="buttons_and_instructions">
+            <div>
+              <button
+                className="button"
+                onClick={() => {
+                  this.apiCall();
+                }}
+              >
+                Click Me for Instructions!
+              </button>
+            </div>
+            <div>
+              <select
+                id="Pokemon"
+                onChange={this.setPoke}
+                style={{
+                  height: "30px",
+                  padding: "10px",
+                  borderRadius: "2px",
+                }}
+              >
                 <option value="" selected>
                   Select a Pokemon!
                 </option>
-              ) : (
-                this.state.pokemon.map((poke, index) => {
-                  return (
-                    <option key={index} value={poke}>
-                      {poke}
-                    </option>
-                  );
-                })
-              )}
-            </select>
+                {this.state.pokemon.length === 0 &&
+                this.state.buttonClicked === true ? (
+                  <option value="" selected>
+                    Select a Pokemon!
+                  </option>
+                ) : (
+                  this.state.pokemon.map((poke, index) => {
+                    return (
+                      <option key={index} value={poke}>
+                        {poke}
+                      </option>
+                    );
+                  })
+                )}
+              </select>
+            </div>
+            <div className="just_buttons">
+              <button
+                className="button"
+                onClick={() => {
+                  this.iChooseYou(this.state.selectedPoke);
+                }}
+              >
+                Fetch Info
+              </button>
+              <button
+                className="button"
+                onClick={() => {
+                  this.eraseInfo();
+                }}
+              >
+                Erase Info
+              </button>
+            </div>
           </div>
-          <div className="just_buttons">
-            <button
-              className="button"
-              onClick={() => {
-                this.iChooseYou(this.state.selectedPoke);
-              }}
-            >
-              Fetch Info
-            </button>
-            <button
-              className="button"
-              onClick={() => {
-                this.eraseInfo();
-              }}
-            >
-              Erase Info
-            </button>
-          </div>
+          <PokeBox
+            pokemon={this.state.theOne}
+            buttonClicked={this.state.buttonClicked}
+          />
         </div>
-        <PokeBox
-          pokemon={this.state.theOne}
-          buttonClicked={this.state.buttonClicked}
-        />
+        <div className="zip_export_container">
+          <ZipExport
+            pokemon={this.state.theOne}
+            buttonClicked={this.state.buttonClicked}
+          />
         </div>
       </div>
     );
