@@ -10,6 +10,8 @@ const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
 require("dotenv").config();
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/file_server'));
+console.log(__dirname);
 massive(process.env.DATABASE_URL).then(db => {
   console.log("PostgreSQL Database Successfully Connected");
   app.set("db", db);
@@ -20,19 +22,10 @@ app.get("/hello", (req, res) => {
   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
 });
 
-app.get("/characters", (req, res) => {
-  const fields =
-    "akas,country_name,created_at,description,games,gender,mug_shot,name,people,slug,species,updated_at,url";
-  games
-    .getAllData("characters", fields, (offset = 0))
-    .then(result => {
-      console.log(result);
-      res.status(200).send(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-});
+app.get("/kings-quest-vi", (req, res) => {
+  // Must add an authentication check to this eventually! Once you figure out the login
+  res.status(200).download(`../`);
+})
 
 app.get("/pokemon", (req, res) => {
   pokemonMethods
