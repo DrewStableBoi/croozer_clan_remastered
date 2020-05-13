@@ -1,33 +1,24 @@
 import React from "react";
 import "../../stylings/container_styles/container_style.css";
-import axios from "axios";
 
 const ZipExport = (props) => {
-  const sample_download = () => {
-    try {
-      axios.get("/kings-quest-vi").then((response) => {
-        return response.blob().then((blob) => {
-          const url = window.URL.createObjectURL(new Blob([blob]));
-          const link = document.createElement("a");
-          link.href = url;
-          link.setAttribute("download", `sample.${this.state.file}`);
-          document.body.appendChild(link);
-          link.click();
-          link.parentNode.removeChild(link);
-        });
-      });
-    } catch (err) {
-      if (err.message) {
-        return `Something went wrong: ${err.message}`;
-      }
-      return err;
-    }
-  };
+  // const sample_download = () => {
+  //   try {
+  //     window.open("/kings-quest-vi");
+  //   } catch (err) {
+  //     if (err.message) {
+  //       return `Something went wrong: ${err.message}`;
+  //     }
+  //     return err;
+  //   }
+  // };
+  // you don't need the above with what you're doing below - the below is the 'easy' way
 
   return (
     <div>
-      <button onClick={() => sample_download()}>KQ6</button>
-      KQ6 Placeholder link
+      <h1>Compressed Floppy Disk Downloads!</h1>
+
+      <a href="source_floppies/kq6/whole_game.zip">KQ6 Floppy Download</a>
     </div>
   );
 };
