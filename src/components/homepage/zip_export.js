@@ -2,16 +2,20 @@ import React from "react";
 import "../../stylings/container_styles/container_style.css";
 
 const ZipExport = (props) => {
-  // const sample_download = () => {
-  //   try {
-  //     window.open("/kings-quest-vi");
-  //   } catch (err) {
-  //     if (err.message) {
-  //       return `Something went wrong: ${err.message}`;
-  //     }
-  //     return err;
-  //   }
-  // };
+  const sample_download = (game) => {
+    try {
+      window.open("/kings-quest-vi");
+    } catch (err) {
+      if (err.message) {
+        return `Something went wrong: ${err.message}`;
+      }
+      return err;
+    }
+  };
+
+  const url_gen = () => {
+// we want the sample_download method to invoke this which will generate the URL to redirect to
+  }
   // you don't need the above with what you're doing below - the below is the 'easy' way
 
   const container_style = {
@@ -30,9 +34,9 @@ const ZipExport = (props) => {
       <h1>Compressed Floppy Disk Downloads!</h1>
 
       <div style={container_style}>
-        <a href="source_floppies/kq6/whole_game.zip" download>
+        <button onClick={() => {sample_download()}}>
           KQ6 Floppy Download
-        </a>
+        </button>
         <a href="source_floppies/amon_ra/amon_ra.zip" download>
           Amon Ra Floppy Download
         </a>

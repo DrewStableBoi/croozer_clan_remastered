@@ -10,6 +10,7 @@ const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
 require("dotenv").config();
 app.use(bodyParser.json());
+console.log(`This is the current directory's name: ${__dirname}`)
 app.use(express.static(__dirname + '/source_floppies')); 
 // you have a directory where every file is potentially public. You may use a 
 // static folder where a browser can read the files, but with .zip files
@@ -24,10 +25,12 @@ app.get("/hello", (req, res) => {
   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
 });
 
-// app.get("/kings-quest-vi", (req, res) => {
-//   res.download(__dirname + '/source_floppies/kq6/whole_game.zip');
-// });
-// when I figure out how to fix the routing issue I will revisit this, but if my app is static files only, this isn't a big deal, but if I want to enable uploads I'll have to revisit.
+app.get("/kings-quest-vi", (req, res) => {
+  res.download(__dirname + '/source_floppies/kq6/whole_game.zip');
+});
+// when I figure out how to fix the routing issue I will revisit this, but if my app is static files only, 
+//this isn't a big deal, but if I want to enable uploads I'll have to revisit.
+// currently the button on the front-end is opening up a new window with localhost8081 as the address
 
 app.get("/pokemon", (req, res) => {
   pokemonMethods
