@@ -3,6 +3,7 @@ import "../../stylings/container_styles/container_style.css";
 import axios from "axios";
 
 const ZipExport = (props) => {
+
   const sample_download = (game) => {
     try {
       axios.get("/game_download", {
@@ -27,8 +28,6 @@ const ZipExport = (props) => {
     }
   };
 
-  // you don't need the above with what you're doing below - the below is the 'easy' way
-
   const container_style = {
     display: "flex",
     flexFlow: "row wrap",
@@ -50,9 +49,13 @@ const ZipExport = (props) => {
         >
           KQ6 Floppy Download
         </button>
-        <a href="source_floppies/amon_ra/amon_ra.zip" download>
+        <button
+          onClick={() => {
+            sample_download("amon_ra");
+          }}
+        >
           Amon Ra Floppy Download
-        </a>
+        </button>
         <a href="source_floppies/kq2/kq2.zip">KQ2 Floppy Download</a>
         <a href="source_floppies/kq3/kq3.zip">KQ3 Floppy Download</a>
         <a href="source_floppies/kq4/kq4.zip">KQ4 Floppy Download</a>
