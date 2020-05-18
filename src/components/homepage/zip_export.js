@@ -10,10 +10,15 @@ const ZipExport = (props) => {
           selected_game: game,
         },
       })
-      .then((data) => {
-        console.log(data);
-        alert("Your data has been logged from this endpoint in the developer conosle.");
-      })
+        .then(({ data }) => {
+          var url = window.URL.createObjectURL(new Blob([data]));
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = game + '.zip';
+          a.click();
+          a.remove();
+          setTimeout(() => window.URL.revokeObjectURL(url), 100);
+        })
     } catch (err) {
       if (err.message) {
         return `Something went wrong: ${err.message}`;
