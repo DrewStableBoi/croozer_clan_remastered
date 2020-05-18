@@ -10,12 +10,26 @@ const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
 require("dotenv").config();
 app.use(bodyParser.json());
-console.log(`This is the current directory's name: ${__dirname}`)
-app.use(express.static(__dirname + '/source_floppies')); 
+console.log(`This is the current directory's name: ${__dirname}` + '/source_floppies')
+
+var options = {
+  dotfiles: 'ignore',
+  etag: false,
+  extensions: ['htm', 'html'],
+  index: false,
+  maxAge: '1d',
+  redirect: false,
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now())
+  }
+}
+app.use(express.static(__dirname + '/source_floppies', options)); 
+
 // you have a directory where every file is potentially public. You may use a 
 // static folder where a browser can read the files, but with .zip files
 // they can also live in there and it's a good idea to have them in a static folder
 // express static is good when you want a static folder in your server directory to serve stuff up
+
 massive(process.env.DATABASE_URL).then(db => {
   console.log("PostgreSQL Database Successfully Connected");
   app.set("db", db);
@@ -25,8 +39,11 @@ app.get("/hello", (req, res) => {
   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
 });
 
-app.get("/kings-quest-vi", (req, res) => {
-  res.download(__dirname + '/source_floppies/kq6/whole_game.zip');
+
+app.get("/game_download", (req, res) => {
+  console.log(req.query)
+ const selected_game = req.query.selected_game;
+  res.sendFile(__dirname + `/${selected_game}/whole_game.zip`);
 });
 // when I figure out how to fix the routing issue I will revisit this, but if my app is static files only, 
 //this isn't a big deal, but if I want to enable uploads I'll have to revisit.

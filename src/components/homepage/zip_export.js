@@ -1,10 +1,19 @@
 import React from "react";
 import "../../stylings/container_styles/container_style.css";
+import axios from "axios";
 
 const ZipExport = (props) => {
   const sample_download = (game) => {
     try {
-      window.open("/kings-quest-vi");
+      axios.get("/game_download", {
+        params: {
+          selected_game: game,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        alert("Your data has been logged from this endpoint in the developer conosle.");
+      })
     } catch (err) {
       if (err.message) {
         return `Something went wrong: ${err.message}`;
@@ -13,9 +22,6 @@ const ZipExport = (props) => {
     }
   };
 
-  const url_gen = () => {
-// we want the sample_download method to invoke this which will generate the URL to redirect to
-  }
   // you don't need the above with what you're doing below - the below is the 'easy' way
 
   const container_style = {
@@ -27,14 +33,16 @@ const ZipExport = (props) => {
     fontSize: "20px",
   };
 
-  // ALSO - declare your styles here as objects that you can make things way cleaner
-
   return (
     <div>
       <h1>Compressed Floppy Disk Downloads!</h1>
 
       <div style={container_style}>
-        <button onClick={() => {sample_download()}}>
+        <button
+          onClick={() => {
+            sample_download("kq6");
+          }}
+        >
           KQ6 Floppy Download
         </button>
         <a href="source_floppies/amon_ra/amon_ra.zip" download>
