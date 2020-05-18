@@ -41,9 +41,10 @@ app.get("/hello", (req, res) => {
 
 
 app.get("/game_download", (req, res) => {
-  console.log(req.query)
- const selected_game = req.query.selected_game;
-  res.sendFile(__dirname + `/${selected_game}/whole_game.zip`);
+  const { selected_game } = req.query;
+  const file = path.resolve(__dirname, 'source_floppies', selected_game, 'whole_game.zip');
+  console.log(file)
+  res.sendFile(file);
 });
 // when I figure out how to fix the routing issue I will revisit this, but if my app is static files only, 
 //this isn't a big deal, but if I want to enable uploads I'll have to revisit.
@@ -71,6 +72,6 @@ app.get("/poke", (req, res) => {
   });
 });
 
-app.listen(8080, function() {
+app.listen(process.env.PORT, function() {
   console.log(`Listening on port:${this.address().port}`);
 });
