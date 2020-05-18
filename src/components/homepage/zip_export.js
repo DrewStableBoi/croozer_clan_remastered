@@ -3,23 +3,23 @@ import "../../stylings/container_styles/container_style.css";
 import axios from "axios";
 
 const ZipExport = (props) => {
-
   const sample_download = (game) => {
     try {
-      axios.get("/game_download", {
-        params: {
-          selected_game: game,
-        },
-      })
+      axios
+        .get("/game_download", {
+          params: {
+            selected_game: game,
+          },
+        })
         .then(({ data }) => {
           var url = window.URL.createObjectURL(new Blob([data]));
-          var a = document.createElement('a');
+          var a = document.createElement("a");
           a.href = url;
-          a.download = game + '.zip';
+          a.download = game + ".zip";
           a.click();
           a.remove();
           setTimeout(() => window.URL.revokeObjectURL(url), 100);
-        })
+        });
     } catch (err) {
       if (err.message) {
         return `Something went wrong: ${err.message}`;
@@ -56,7 +56,13 @@ const ZipExport = (props) => {
         >
           Amon Ra Floppy Download
         </button>
-        <a href="source_floppies/kq2/kq2.zip">KQ2 Floppy Download</a>
+        <button
+          onClick={() => {
+            sample_download("kq4");
+          }}
+        >
+          KQ4 Floppy Download{" "}
+        </button>{" "}
         <a href="source_floppies/kq3/kq3.zip">KQ3 Floppy Download</a>
         <a href="source_floppies/kq4/kq4.zip">KQ4 Floppy Download</a>
       </div>
