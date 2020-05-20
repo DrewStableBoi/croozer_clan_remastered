@@ -3,6 +3,14 @@ import "../../stylings/container_styles/container_style.css";
 import axios from "axios";
 
 const ZipExport = (props) => {
+
+//public drive links for the floppy downloads
+  const kq2_link = 'https://drive.google.com/file/d/1c0BBi8vY44eU8egkASZkTnSsaAeSWuEm/view?usp=sharing';
+  const kq3_link = 'https://drive.google.com/file/d/1zpOwL47HTyKRq6FuF1D2gZ6fgmh1NC2L/view?usp=sharing';
+  const kq4_link = 'https://drive.google.com/file/d/1nGIfgKAF8mlj09sSREezebIdlciAbmc0/view?usp=sharing';
+  const kq6_link = 'https://drive.google.com/file/d/1O8hmlNHQbgHzgt_8NF98xgpJzqyJEnkf/view?usp=sharing';
+  const amon_ra_link = 'https://drive.google.com/file/d/1U_vsnhNN7y-3kCegTni8gj3MV39-St2T/view?usp=sharing';
+
   const sample_download = (game) => {
     try {
       axios
@@ -11,17 +19,26 @@ const ZipExport = (props) => {
             selected_game: game,
           },
         })
-        .then(({ data }) => {
+        .then((response) => {
           try {
-            var url = window.URL.createObjectURL(new Blob([data]));
-            var a = document.createElement("a");
-            a.href = url;
-            a.download = game + ".zip";
-            a.click();
-            a.remove();
-            setTimeout(() => window.URL.revokeObjectURL(url), 100);
+            //alert the user and then open a window for the drive folder to download
+            alert(response.data);
+              if (game === 'kq6') {
+                window.open(kq6_link);
+              }
+              if (game === 'kq4') {
+                window.open(kq4_link);
+              }
+              if (game === 'kq3') {
+                window.open(kq3_link);
+              }
+              if (game === 'kq2') {
+                window.open(kq2_link);
+              }
+              window.open(amon_ra_link);
           } catch (err) {
-            window.alert("There is an issue with the .zip file, my liege.");
+            console.log(err);
+            window.alert("There is an issue with the redirect, my liege.");
           }
         });
     } catch (err) {
@@ -56,7 +73,7 @@ const ZipExport = (props) => {
       <div style={container_style}>
         <button
           onClick={() => {
-            sample_download("Kq6");
+            sample_download("kq6");
           }}
           style={button_style}
         >
@@ -64,7 +81,7 @@ const ZipExport = (props) => {
         </button>
         <button
           onClick={() => {
-            sample_download("amonRa");
+            sample_download("amon_ra");
           }}
           style={button_style}
         >
@@ -72,7 +89,7 @@ const ZipExport = (props) => {
         </button>
         <button
           onClick={() => {
-            sample_download("Kq4");
+            sample_download("kq4");
           }}
           style={button_style}
         >
@@ -80,7 +97,7 @@ const ZipExport = (props) => {
         </button>{" "}
         <button
           onClick={() => {
-            sample_download("Kq3");
+            sample_download("kq3");
           }}
           style={button_style}
         >
@@ -88,7 +105,7 @@ const ZipExport = (props) => {
         </button>{" "}
         <button
           onClick={() => {
-            sample_download("Kq2");
+            sample_download("kq2");
           }}
           style={button_style}
         >
