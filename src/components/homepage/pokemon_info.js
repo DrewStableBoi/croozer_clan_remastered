@@ -12,7 +12,7 @@ const PokeBox = (props) => {
   }
   if (props.pokemon.length === 0) {
     return (
-      <div styles={{ display: "flex", alignSelf: "center" }}>
+      <div style={{ display: "flex", alignSelf: "center" }}>
         Your Pokemon's Information will be Displayed Below
       </div>
     );

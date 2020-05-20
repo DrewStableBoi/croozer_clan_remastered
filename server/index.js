@@ -23,7 +23,8 @@ var options = {
     res.set('x-timestamp', Date.now())
   }
 }
-app.use(express.static(__dirname + '/source_floppies', options)); 
+
+app.use(express.static(__dirname)); 
 
 // you have a directory where every file is potentially public. You may use a 
 // static folder where a browser can read the files, but with .zip files
@@ -39,16 +40,13 @@ app.get("/hello", (req, res) => {
   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
 });
 
-
 app.get("/game_download", (req, res) => {
   const { selected_game } = req.query;
   const file = path.resolve(__dirname, 'source_floppies', selected_game, 'whole_game.zip');
   console.log(file)
   res.sendFile(file);
+  //is this what's corrupting the .zip files?
 });
-// when I figure out how to fix the routing issue I will revisit this, but if my app is static files only, 
-//this isn't a big deal, but if I want to enable uploads I'll have to revisit.
-// currently the button on the front-end is opening up a new window with localhost8081 as the address
 
 app.get("/pokemon", (req, res) => {
   pokemonMethods
