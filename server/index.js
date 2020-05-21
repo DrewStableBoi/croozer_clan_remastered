@@ -10,20 +10,6 @@ const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
 require("dotenv").config();
 app.use(bodyParser.json());
-console.log(`This is the current directory's name: ${__dirname}` + '/source_floppies')
-
-var options = {
-  dotfiles: 'ignore',
-  etag: false,
-  extensions: ['htm', 'html'],
-  index: false,
-  maxAge: '1d',
-  redirect: false,
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now())
-  }
-}
-
 app.use(express.static(__dirname)); 
 
 // you have a directory where every file is potentially public. You may use a 
@@ -36,10 +22,10 @@ massive(process.env.DATABASE_URL).then(db => {
   app.set("db", db);
 });
 // put all routes here below
+
 app.get("/hello", (req, res) => {
   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
 });
-
 
 app.get("/game_download", (req, res) => {
   const { selected_game } = req.query;
@@ -59,7 +45,6 @@ app.get("/pokemon", (req, res) => {
 
 app.get("/poke", (req, res) => {
   let poke  = req.query.pokemon;
-  console.log(poke);
   pokemonMethods.getPoke(poke).then(result => {
     res.status(200).send(result);
   })
