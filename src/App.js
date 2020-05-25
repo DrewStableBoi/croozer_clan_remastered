@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../src/stylings/app.css";
 import ZipExport from "./components/homepage/zip_export";
 import PokeSetup from "./components/homepage/pokemon_setup";
+import TheCrew from "./components/homepage/the_crew";
 
 class App extends Component {
   constructor() {
@@ -10,13 +11,30 @@ class App extends Component {
     this.state = {};
   }
 
+  main_container = {
+    display: "flex",
+    flexFlow: "row wrap",
+    justifyContent: "space-evenly",
+    border: "5px solid black",
+    height: "100%",
+    width: "100%",
+  };
+
+  module_container = {
+    display: "flex",
+    border: "5px solid blue",
+    height: "25%",
+    width: "50%"
+  };
+
   render() {
     return (
-      <div className="main-container">
+      <div style={this.main_container}>
         <PokeSetup />
-        <div className="zip_export_container">
+        <div style={this.module_container}>
           <ZipExport />
         </div>
+        <TheCrew/>
       </div>
     );
   }

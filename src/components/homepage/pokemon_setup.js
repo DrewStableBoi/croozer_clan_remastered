@@ -76,9 +76,16 @@ class PokeSetup extends Component {
     });
   };
 
+  module_container = {
+    display: "flex",
+    border: "5px solid blue",
+    height: "25%",
+    width: "50%",
+  };
+
   render() {
     return (
-      <div className="pokemon_container">
+      <div style={this.module_container}>
         <div className="buttons_and_instructions">
           <div>
             <button

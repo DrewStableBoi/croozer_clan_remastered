@@ -53,15 +53,6 @@ const ZipExport = (props) => {
     }
   };
 
-  const container_style = {
-    display: "flex",
-    flexFlow: "row wrap",
-    width: "100%",
-    height: "10%",
-    justifyContent: "space-between",
-    margin: "10px",
-    fontSize: "20px",
-  };
 
   const button_style = {
     margin: "10px",
@@ -89,7 +80,7 @@ const ZipExport = (props) => {
         <li>Play the damn game! </li>
       </div>
 
-      <div style={container_style}>
+      <div>
         <button
           onClick={() => {
             sample_download("kq6");

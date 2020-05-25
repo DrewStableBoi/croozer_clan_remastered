@@ -1,11 +1,3 @@
-.main-container {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  height: 100vh;
-  width: 100vw;
-  border: 5px solid black;
-} 
 
 /* On May 3, 2020, you had an idea to build an app that would allow for data collection surrounding mental health episodes
 the goal would be to enable husbands, wives, friends and partners as well as parents, etc. to better prepare for a response to an episode
@@ -13,14 +5,7 @@ of depression or suicidal thoughts, etc. They just fill out a survey asking how 
 out a formula based on what has worked in the past. The survey will also take into consideration the feelings and health of the person dealing with the 
 person in crisis. */
 
-.pokemon_container {
-  display: flex;
-  border: 5px solid blue;
-  height: 50%;
-  width: 50%;
-}
-
-.zip_export_container {
+.module_container {
   display: flex;
   border: 5px solid blue;
   height: 50%;

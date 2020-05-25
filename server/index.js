@@ -8,18 +8,19 @@ const pokemonMethods = require("./pokeAPI/pokemon");
 const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
 const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
-require("dotenv").config();
+const postgreSQL_local = 'postgresql://drewhemsley@localhost/drewhemsley';
 app.use(bodyParser.json());
-app.use(express.static(__dirname)); 
 
 // you have a directory where every file is potentially public. You may use a 
 // static folder where a browser can read the files, but with .zip files
 // they can also live in there and it's a good idea to have them in a static folder
 // express static is good when you want a static folder in your server directory to serve stuff up
 
-massive(process.env.DATABASE_URL).then(db => {
+massive(postgreSQL_local).then(db => {
   console.log("PostgreSQL Database Successfully Connected");
   app.set("db", db);
+}).catch((err) => {
+  console.log(`Here's the DB connection error: ${err}`);
 });
 // put all routes here below
 
