@@ -16,15 +16,16 @@ class App extends Component {
     flexFlow: "row wrap",
     justifyContent: "space-evenly",
     border: "5px solid black",
-    height: "100%",
-    width: "100%",
+    height: "100vh",
+    width: "100vw"
   };
 
   module_container = {
     display: "flex",
+    flexFLow: "row wrap",
     border: "5px solid blue",
-    height: "25%",
-    width: "50%"
+    height: "50%",
+    width: "25%"
   };
 
   render() {

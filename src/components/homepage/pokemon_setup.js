@@ -79,8 +79,8 @@ class PokeSetup extends Component {
   module_container = {
     display: "flex",
     border: "5px solid blue",
-    height: "25%",
-    width: "50%",
+    height: "50%",
+    width: "40%",
   };
 
   render() {

@@ -53,18 +53,12 @@ const ZipExport = (props) => {
     }
   };
 
-
-  const button_style = {
-    margin: "10px",
-  };
-  //For whatever reason all the downloads are corrupt? Lol gotta figure that out
-
   return (
     <div>
       <h1 style={{ display: "flex", alignSelf: "center", margin: "15px" }}>
         Compressed Floppy Disk Downloads!
       </h1>
-      <div style={{ alignSelf: "center", margin: "15px" }}>
+      <div>
         <p>
           These files are ripped from the in-box, 3.5" floppy disk-versions of
           these games. I found that if I had a random disk fail in the set of
@@ -82,42 +76,42 @@ const ZipExport = (props) => {
 
       <div>
         <button
+          className="button"
           onClick={() => {
             sample_download("kq6");
           }}
-          style={button_style}
         >
           KQ6 Floppy Download
         </button>
         <button
+          className="button"
           onClick={() => {
             sample_download("amon_ra");
           }}
-          style={button_style}
         >
           Amon Ra Floppy Download
         </button>
         <button
+          className="button"
           onClick={() => {
             sample_download("kq4");
           }}
-          style={button_style}
         >
           KQ4 Floppy Download{" "}
         </button>{" "}
         <button
+          className="button"
           onClick={() => {
             sample_download("kq3");
           }}
-          style={button_style}
         >
           KQ3 Floppy Download{" "}
         </button>{" "}
         <button
+          className="button"
           onClick={() => {
             sample_download("kq2");
           }}
-          style={button_style}
         >
           KQ2 Floppy Download{" "}
         </button>{" "}

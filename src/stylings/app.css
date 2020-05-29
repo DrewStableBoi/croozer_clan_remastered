@@ -27,7 +27,7 @@ person in crisis. */
   width: 75%;
 } /* This class is just for the Fetch Info and Erase Info buttons */
 
-#button {
+.button {
 height: 30px;
 padding: 10px;
 border-radius: 2px;
