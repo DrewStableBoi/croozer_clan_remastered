@@ -3,6 +3,7 @@ import "../src/stylings/app.css";
 import ZipExport from "./components/homepage/zip_export";
 import PokeSetup from "./components/homepage/pokemon_setup";
 import TheCrew from "./components/homepage/the_crew";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 class App extends Component {
   constructor() {
