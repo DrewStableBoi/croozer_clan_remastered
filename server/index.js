@@ -10,7 +10,6 @@ const BASE_POKE_LIMIT = 50;
 const BASE_POKE_OFFSET = 0;
 const postgreSQL_local = 'postgresql://drewhemsley@localhost/drewhemsley';
 app.use(bodyParser.json());
-const bcrypt = require("bcrypt");
 
 
 // you have a directory where every file is potentially public. You may use a 
@@ -82,7 +81,7 @@ app.post("/login", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 app.get("/user_info", async (req, res) => {
   const db = req.app.get("db");

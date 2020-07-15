@@ -54,7 +54,7 @@ const ZipExport = (props) => {
   };
 
   return (
-    <div>
+    <div style={{display: "flex", justifyContent: "space-between"}}>
       <h1 style={{ display: "flex", alignSelf: "center", margin: "15px" }}>
         Compressed Floppy Disk Downloads!
       </h1>
