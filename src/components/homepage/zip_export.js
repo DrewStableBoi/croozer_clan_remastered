@@ -80,7 +80,7 @@ const ZipExport = (props) => {
       >
         Compressed Floppy Disk Downloads!
       </h1>
-      <div style={{ padding: "10px", borderLeft: "3px dotted black" }}>
+      <div style={{ padding: "10px", borderLeft: "3px dotted black", width: "50%" }}>
         <p>
           These files are ripped from the in-box, 3.5" floppy disk-versions of
           these games. I found that if I had a random disk fail in the set of
