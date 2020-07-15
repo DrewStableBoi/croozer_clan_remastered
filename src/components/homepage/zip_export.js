@@ -53,12 +53,34 @@ const ZipExport = (props) => {
     }
   };
 
+  const module_container = {
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "space-evenly",
+    flexFLow: "column wrap",
+    height: "25%",
+  };
+
+  const button_container = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flexFlow: "row wrap",
+    borderLeft: "3px dotted black",
+    height: "75%"
+  };
+
   return (
-    <div style={{display: "flex", justifyContent: "space-between"}}>
-      <h1 style={{ display: "flex", alignSelf: "center", margin: "15px" }}>
+    <div style={module_container}>
+      <h1
+        style={{
+          display: "inline-block",
+        }}
+      >
         Compressed Floppy Disk Downloads!
       </h1>
-      <div>
+      <div style={{ padding: "10px", borderLeft: "3px dotted black" }}>
         <p>
           These files are ripped from the in-box, 3.5" floppy disk-versions of
           these games. I found that if I had a random disk fail in the set of
@@ -74,7 +96,7 @@ const ZipExport = (props) => {
         <li>Play the damn game! </li>
       </div>
 
-      <div>
+      <div style={button_container}>
         <button
           className="button"
           onClick={() => {

@@ -2,13 +2,12 @@ const express = require("express");
 const _ = require("lodash");
 const app = express();
 const massive = require("massive");
-const path = require("path");
 const bodyParser = require("body-parser");
-const pokemonMethods = require("./pokeAPI/pokemon");
-const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
-const BASE_POKE_LIMIT = 50;
-const BASE_POKE_OFFSET = 0;
-const postgreSQL_local = 'postgresql://drewhemsley@localhost/drewhemsley';
+// const pokemonMethods = require("./pokeAPI/pokemon");
+// const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
+// const BASE_POKE_LIMIT = 50;
+// const BASE_POKE_OFFSET = 0;
+// const postgreSQL_local = 'postgresql://drewhemsley@localhost/drewhemsley';
 app.use(bodyParser.json());
 
 
@@ -25,35 +24,35 @@ massive(postgreSQL_local).then(db => {
 });
 // put all routes here below
 
-app.get("/hello", (req, res) => {
-  res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
-});
+// app.get("/hello", (req, res) => {
+//   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
+// });
 
-app.get("/game_download", (req, res) => {
-  const { selected_game } = req.query;
-  res.send(`Thank you for downloading ${selected_game}. You will be redirected to a drive folder where you can download it. Happy gaming!`)
-})
+// app.get("/game_download", (req, res) => {
+//   const { selected_game } = req.query;
+//   res.send(`Thank you for downloading ${selected_game}. You will be redirected to a drive folder where you can download it. Happy gaming!`)
+// })
 
-app.get("/pokemon", (req, res) => {
-  pokemonMethods
-    .populateDropdown(BASE_POKE_URL, BASE_POKE_LIMIT, BASE_POKE_OFFSET)
-    .then(result => {
-      res.status(200).send(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-});
+// app.get("/pokemon", (req, res) => {
+//   pokemonMethods
+//     .populateDropdown(BASE_POKE_URL, BASE_POKE_LIMIT, BASE_POKE_OFFSET)
+//     .then(result => {
+//       res.status(200).send(result);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// });
 
-app.get("/poke", (req, res) => {
-  let poke  = req.query.pokemon;
-  pokemonMethods.getPoke(poke).then(result => {
-    res.status(200).send(result);
-  })
-  .catch(error => {
-    console.log(error);
-  });
-});
+// app.get("/poke", (req, res) => {
+//   let poke  = req.query.pokemon;
+//   pokemonMethods.getPoke(poke).then(result => {
+//     res.status(200).send(result);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
+// });
 
 app.listen(process.env.PORT, function() {
   console.log(`Listening on port:${this.address().port}`);
