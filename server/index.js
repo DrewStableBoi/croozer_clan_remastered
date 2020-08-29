@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 // const BASE_POKE_URL = "https://pokeapi.co/api/v2/pokemon";
 // const BASE_POKE_LIMIT = 50;
 // const BASE_POKE_OFFSET = 0;
-// const postgreSQL_local = 'postgresql://drewhemsley@localhost/drewhemsley';
+const postgreSQL_local = 'postgresql://localhost';
 app.use(bodyParser.json());
 
 
