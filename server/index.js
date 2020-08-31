@@ -28,10 +28,10 @@ massive(postgreSQL_local).then(db => {
 //   res.send(`Use the dropdown to select a Pokemon. Once you do, click "Fetch Info". This will pass a call to retrieve all the information about that Pokemon!`);
 // });
 
-// app.get("/game_download", (req, res) => {
-//   const { selected_game } = req.query;
-//   res.send(`Thank you for downloading ${selected_game}. You will be redirected to a drive folder where you can download it. Happy gaming!`)
-// })
+app.get("/game_download", (req, res) => {
+  const { selected_game } = req.query;
+  res.send(`Thank you for downloading ${selected_game}. You will be redirected to a drive folder where you can download it. Happy gaming!`)
+})
 
 // app.get("/pokemon", (req, res) => {
 //   pokemonMethods
